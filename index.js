@@ -21,7 +21,8 @@ const fetch = require('node-fetch')
 
 const ids = ['0004', '0024', '0025', '0026']
 ids.map(id => {
-    fetch(`https://secure.j-bus.co.jp/hon/BusService/GetBusDivisionFare?GroupCode=190004&RouteCode=0002&WayFlag=%E7%89%87%E9%81%93&MoveCode%5B0%5D=${id}&BusCode%5B0%5D=01&Departure%5B0%5D=2018%2F12%2F30&PlanCode%5B0%5D=00&GetOnBusStopCode%5B0%5D=11&GetOffBusStopCode%5B0%5D=15`)
+    const url = `https://secure.j-bus.co.jp/hon/BusService/GetBusDivisionFare?GroupCode=190004&RouteCode=0002&WayFlag=%E7%89%87%E9%81%93&MoveCode%5B0%5D=${id}&BusCode%5B0%5D=01&Departure%5B0%5D=2018%2F12%2F30&PlanCode%5B0%5D=00&GetOnBusStopCode%5B0%5D=11&GetOffBusStopCode%5B0%5D=15`
+    fetch(url)
         .then(res => {
             console.log('Status:', res.status)
             if (res.status === 503) {
@@ -31,6 +32,7 @@ ids.map(id => {
             }
         })
         .then(json => {
+            console.log(url)
             console.log(JSON.stringify(json))
             const remainTicket = json[0].remain
             if (remainTicket > 0) {
