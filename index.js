@@ -18,8 +18,10 @@ const fetch = require('node-fetch')
 //         planName: "通常運賃"
 //     }
 // ]
-
-const ids = ['0004', '0024', '0025', '0026']
+// 白川至金澤巴士:
+// const ids = ['0004', '0024', '0025', '0026']
+// 監控車次
+const ids = ['0026']
 ids.map(id => {
     const url = `https://secure.j-bus.co.jp/hon/BusService/GetBusDivisionFare?GroupCode=190004&RouteCode=0002&WayFlag=%E7%89%87%E9%81%93&MoveCode%5B0%5D=${id}&BusCode%5B0%5D=01&Departure%5B0%5D=2018%2F12%2F30&PlanCode%5B0%5D=00&GetOnBusStopCode%5B0%5D=11&GetOffBusStopCode%5B0%5D=15`
     fetch(url)
